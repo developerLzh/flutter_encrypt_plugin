@@ -10,8 +10,8 @@ class EncryptPlugin {
       'content': content,
       'password': password,
     };
-    final String version = await _channel.invokeMethod('aesEncrypt', params);
-    return version;
+    final String string = await _channel.invokeMethod('aesEncrypt', params);
+    return string;
   }
 
   static Future<String> aesDecrypt(String content, String password) async {
@@ -19,7 +19,18 @@ class EncryptPlugin {
       'content': content,
       'password': password,
     };
-    final String version = await _channel.invokeMethod('aesDecrypt', params);
-    return version;
+    final String string = await _channel.invokeMethod('aesDecrypt', params);
+    return string;
+  }
+
+  static Future<String> rsaEntryByPublicKey(
+      String content, String publicKey) async {
+    final Map<String, dynamic> params = <String, dynamic>{
+      'content': content,
+      'publicKey': publicKey,
+    };
+    final String string =
+        await _channel.invokeMethod('rsaEntryByPublicKey', params);
+    return string;
   }
 }

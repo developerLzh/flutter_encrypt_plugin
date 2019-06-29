@@ -4,7 +4,7 @@
  * author: shiqun.shi@alipay.com
  */
 
-package com.rvakva.encrypt_plugin;
+package com.rvakva.encrypt_plugin.utils;
 
 public final class Base64 {
 

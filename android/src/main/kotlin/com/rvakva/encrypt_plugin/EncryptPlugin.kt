@@ -1,6 +1,9 @@
 package com.rvakva.encrypt_plugin
 
 import android.os.Build
+import com.rvakva.encrypt_plugin.utils.Base64
+import com.rvakva.encrypt_plugin.utils.Base64Utils
+import com.rvakva.encrypt_plugin.utils.RsaUtils
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -43,6 +46,15 @@ class EncryptPlugin : MethodCallHandler {
                 val psw = call.argument<String>("password")
                 if (content != null && psw != null) {
                     result.success(aesDecrypt(content, psw))
+                } else {
+                    result.error("参数不能为空", null, null)
+                }
+            }
+            call.method == "rsaEntryByPublicKey" -> {
+                val content = call.argument<String>("content")
+                val publicKey = call.argument<String>("publicKey")
+                if (content != null && publicKey != null) {
+                    result.success(rsaEntryByPublicKey(content, publicKey))
                 } else {
                     result.error("参数不能为空", null, null)
                 }
@@ -93,7 +105,7 @@ class EncryptPlugin : MethodCallHandler {
      * @return
      */
 
-    fun aesDecrypt(content: String, password: String): String? {
+    private fun aesDecrypt(content: String, password: String): String? {
         try {
             val byteMi = Base64.decode(content)
             val zeroIv = IvParameterSpec(password.toByteArray())
@@ -118,6 +130,15 @@ class EncryptPlugin : MethodCallHandler {
             e.printStackTrace()
         }
         return null
+    }
+
+    /**
+     * rsa公钥加密
+     */
+    private fun rsaEntryByPublicKey(content: String, publicKey: String): String {
+        return Base64Utils.encode(RsaUtils.encryptByPublicKey(
+                content.toByteArray(charset("UTF-8")),
+                publicKey))
     }
 
 
