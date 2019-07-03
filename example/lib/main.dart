@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
     String platformVersion;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      platformVersion = await EncryptPlugin.platformVersion;
+      platformVersion = await EncryptPlugin.aesEncrypt("15682381993", "3234340982qwecd4");
     } on PlatformException {
       platformVersion = 'Failed to get platform version.';
     }
