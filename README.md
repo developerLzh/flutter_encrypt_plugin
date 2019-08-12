@@ -1,14 +1,11 @@
-# encrypt_plugin
+# 一个用于Aes和Rsa加解密的flutter插件
+## 目前支持的模式
+  Aes: "AES/ECB/PKCS5Padding"加解密
+  Rsa:公钥加密
 
-A new Flutter plugin for aes encrypt
+## How To Use?
+ import 'package:encrypt_plugin/encrypt_plugin.dart';
 
-## Getting Started
-
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
-
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+ EncryptPlugin.rsaEntryByPublicKey(content, publicKey);
+ EncryptPlugin.aesEncrypt(plainText, psw);
+ EncryptPlugin.aesDecrypt(plainText, psw);
