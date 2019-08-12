@@ -8,9 +8,9 @@
 ## How To Use?
  import 'package:encrypt_plugin/encrypt_plugin.dart';
 
- EncryptPlugin.rsaEntryByPublicKey(content, publicKey);
+ String s1 = await EncryptPlugin.rsaEntryByPublicKey(content, publicKey);//Rsa公钥加密
 
- EncryptPlugin.aesEncrypt(plainText, psw);
+  String s2 = await EncryptPlugin.aesEncrypt(plainText, psw);//aes加密
 
- EncryptPlugin.aesDecrypt(plainText, psw);
- 
+  String s3 = await EncryptPlugin.aesDecrypt(plainText, psw);//aes解密
+
